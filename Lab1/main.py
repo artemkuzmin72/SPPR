@@ -28,13 +28,10 @@ df_norm['Perfomance_norm'] = (df['Perfomance'] - df['Perfomance'].min()) / (df['
 df_norm['weight_norm'] = (df['weight'].max() - df['weight']) / (df['weight'].max() - df['weight'].min())
 df_norm['diagonal_norm'] = (df['diagonal'] - df['diagonal'].min()) / (df['diagonal'].max() - df['diagonal'].min())
 
-# Матрица нормализованных значений
 features = df_norm[['Price_norm', 'Battery_norm', 'Perfomance_norm', 'weight_norm', 'diagonal_norm']].values
 
-# Вектор весов
 w = np.array([weights['Price'], weights['Battery'], weights['Perfomance'], weights['weight'], weights['diagonal']])
 
-# Вычисление Score через dot
 df_norm['Score'] = features.dot(w)
 
 print(df_norm[['Phone', 'Score']])
