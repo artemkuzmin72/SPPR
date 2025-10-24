@@ -8,17 +8,11 @@ matrix  = np.array([[7, 3, 6, 10, 1],
 q=[0.15, 0.79, 0.0, 0.06, 0.0]
 p=[0.0, 0.21, 0.11, 0.0, 0.68]
 answer = {}
-# Находим нижнюю и верхнюю цены
 lower_price = max([min(x) for x in matrix])
-upper_price = min([max(x) for x in matrix.T])  # ТУТ я иправил np.rot90(matrix) на matrix.T, выдает разные результаты, хотя
-# хотя по идее должно одно и тоже выводить, код без изменений выложен
-print(lower_price, upper_price)# выводит 6 и 9 соответственно
-if lower_price==upper_price:print("седловая точка есть", f"ответ v={lower_price}") # Ищем седловую точку
-  # едловой точки нет- значит  первый игрок может гарантировать себе выигрыш не менее 6 единиц (нижняя цена)
-  # и может надеяться на выигрыш не более 9 единиц (верхняя цена)
-# Игра решается в смешанных стратегиях.
+upper_price = min([max(x) for x in matrix.T])
+print(lower_price, upper_price)
+if lower_price==upper_price:print("седловая точка есть", f"ответ v={lower_price}") 
 
-# Определить выигрыши игрока А в ситуации (P; Q), (P; B1), (P; B2), (P; B3):
 else:
   buff=0
   for i,pin in zip(matrix,p):
